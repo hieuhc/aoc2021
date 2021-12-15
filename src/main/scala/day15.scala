@@ -1,3 +1,4 @@
+import scala.annotation.tailrec
 import scala.io.Source
 import scala.collection.mutable.{Map => MutableMap}
 
@@ -30,6 +31,7 @@ object day15 {
       }
     }.toMap
 
+    @tailrec
     def nav2(map: RiskMap, muState: MutableMap[Pos, Int])(candidates: RiskMap): Unit = {
       if (candidates.nonEmpty) {
         muState ++= candidates
