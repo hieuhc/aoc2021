@@ -20,15 +20,15 @@ object day15 {
       x <- 0 until initSize * 5
       y <- 0 until initSize * 5
     } yield (x, y)).map { case (x, y) =>
-      if (initMap.contains((x, y))) ((x, y), initMap((x, y)))
-      else {
-        val initV = initMap((x % initSize, y % initSize))
-        val newV = (initV + x / initSize + y / initSize) % 9 match {
-          case 0   => 9
-          case num => num
-        }
-        ((x, y), newV)
-      }
+      val newV = initMap.getOrElse(
+        (x, y), {
+          val initV = initMap((x % initSize, y % initSize))
+          (initV + x / initSize + y / initSize) % 9 match {
+            case 0   => 9
+            case num => num
+          }
+        })
+      ((x, y), newV)
     }.toMap
 
     @tailrec
