@@ -30,9 +30,7 @@ object day16 {
         num + BigInt(str(idx).asDigit) * BigDecimal.valueOf(math.pow(2, str.length - 1 - idx)).toBigInt
       }
     }
-
     val binIn: String = hexToBin(input)
-    println("binIn", binIn, "with length", binIn.length)
 
     @tailrec
     def literalParse(start: Int, crrV: String): (Int, String) = {
@@ -67,11 +65,7 @@ object day16 {
         case 3 => operate(-1, { case (a, b) => if (a == -1) b else List(a, b).max })
         case 5 => operate(-1, { case (a, b) => if (a == -1) b else if (a > b) 1 else 0 })
         case 6 => operate(-1, { case (a, b) => if (a == -1) b else if (a < b) 1 else 0 })
-        case 7 => operate(
-            -1,
-            { case (a, b) =>
-              if (a == -1) b else if (a == b) 1 else 0
-            })
+        case 7 => operate(-1, { case (a, b) => if (a == -1) b else if (a == b) 1 else 0 })
 
       }
     }
