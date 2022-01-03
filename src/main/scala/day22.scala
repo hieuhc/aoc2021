@@ -23,24 +23,24 @@ object day22 {
       Some((min to max).toList)
     }.getOrElse(Nil)
 
-//    val cubesOnInRange: Set[Point] = input.foldLeft(Set[Point]()) { case (crrSet, line) =>
-//      line match {
-//        case s"${switch} x=${int(xMin)}..${int(xMax)},y=${int(yMin)}..${int(yMax)},z=${int(zMin)}..${int(zMax)}" =>
-//          val limit               = (-50, 50)
-//          val xOverlap: List[Int] = segmentToList(segmentOverlap((xMin, xMax), limit))
-//          val yOverlap: List[Int] = segmentToList(segmentOverlap((yMin, yMax), limit))
-//          val zOverlap: List[Int] = segmentToList(segmentOverlap((zMin, zMax), limit))
-//          val lineSet: Set[Point] = (for {
-//            x <- xOverlap
-//            y <- yOverlap
-//            z <- zOverlap
-//          } yield (x, y, z)).toSet
-//          switch match {
-//            case "on"  => crrSet.union(lineSet)
-//            case "off" => crrSet.diff(lineSet)
-//          }
-//      }
-//    }
+    val cubesOnInRange: Set[Point] = input.foldLeft(Set[Point]()) { case (crrSet, line) =>
+      line match {
+        case s"${switch} x=${int(xMin)}..${int(xMax)},y=${int(yMin)}..${int(yMax)},z=${int(zMin)}..${int(zMax)}" =>
+          val limit               = (-50, 50)
+          val xOverlap: List[Int] = segmentToList(segmentOverlap((xMin, xMax), limit))
+          val yOverlap: List[Int] = segmentToList(segmentOverlap((yMin, yMax), limit))
+          val zOverlap: List[Int] = segmentToList(segmentOverlap((zMin, zMax), limit))
+          val lineSet: Set[Point] = (for {
+            x <- xOverlap
+            y <- yOverlap
+            z <- zOverlap
+          } yield (x, y, z)).toSet
+          switch match {
+            case "on"  => crrSet.union(lineSet)
+            case "off" => crrSet.diff(lineSet)
+          }
+      }
+    }
     println(cubesOnInRange.size)
 
     def addSegment(segList: List[Segment], newSeg: Segment): List[Segment] = {
